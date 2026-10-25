@@ -1,0 +1,12 @@
+[
+  {"q": "How do I change file permissions?", "page": 121, "answerable": true},
+  {"q": "What does chmod 755 mean?", "page": 123, "answerable": true},
+  {"q": "What does the ls command do?", "page": null, "answerable": true},
+  {"q": "How do I copy a directory?", "page": null, "answerable": true},
+  {"q": "What is a symbolic link?", "page": null, "answerable": true},
+  {"q": "How do I change the owner of a file?", "page": 132, "answerable": true},
+  {"q": "What is the difference between cp and mv?", "page": null, "answerable": true},
+  {"q": "How do I search for text inside files?", "page": null, "answerable": true},
+  {"q": "Who won the cricket world cup?", "page": null, "answerable": false},
+  {"q": "How do I install Docker?", "page": null, "answerable": false}
+]
