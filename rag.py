@@ -7,10 +7,12 @@ from google import genai
 
 load_dotenv()
 PDF_PATH = "data/linux_command_line.pdf"
-START, END = 20, 150
+START, END = 20, 400
 MODELS = ["gemini-3.8-flash", "gemini-3.8-flash-lite"]
 
 embedder = SentenceTransformer("all-MiniLM-L6-v2")
+from sentence_transformers import CrossEncoder
+reranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
 db = chromadb.PersistentClient(path="chroma_db").get_or_create_collection("docs")
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
@@ -43,16 +45,24 @@ def generate(prompt):
                 return client.models.generate_content(
                     model=name, contents=prompt).text
             except Exception as e:
+                print("API error:", str(e)[:200])
                 if "503" in str(e) or "429" in str(e):
                     time.sleep(2 ** attempt * 3)
                 else:
                     break
     return "The model is busy right now. Please try again."
 
-def ask(question, k=6):
+def ask(question, k=6, fetch=15, rerank=True):
     res = db.query(query_embeddings=embedder.encode([question]).tolist(),
-                   n_results=k)
+                   n_results=fetch)
     docs, metas = res["documents"][0], res["metadatas"][0]
+    if rerank:
+        scores = reranker.predict([(question, d) for d in docs])
+        order = sorted(range(len(docs)), key=lambda i: scores[i], reverse=True)[:k]
+        docs = [docs[i] for i in order]
+        metas = [metas[i] for i in order]
+    else:
+        docs, metas = docs[:k], metas[:k]
     context = "\n\n".join(f"[Page {m['page']}] {d}" for d, m in zip(docs, metas))
     prompt = (
         "Answer only from the context. Cite pages like (p. 45). "

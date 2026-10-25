@@ -67,13 +67,35 @@ python eval/run_eval.py
 
 Results are saved to `eval/results.csv`.
 
-| Metric                                   | Result      |
-| ---------------------------------------- | ----------- |
-| Answerable questions answered correctly  | 6 / 8    |
-| Unanswerable questions correctly refused | 2 / 2    |
-| Expected page found in retrieved chunks  | 3 / 3 |
+| Metric                                   | Result |
+| ---------------------------------------- | ------ |
+| Answerable questions answered correctly  | 6 / 8  |
+| Unanswerable questions correctly refused | 2 / 2  |
+| Expected page found in retrieved chunks  | 3 / 3  |
 
 I checked each answer by hand against the book. One question failed because the Gemini API was busy; it is counted as not answered. One question (grep) was refused, probably because that chapter is outside the indexed pages (20-150).
+
+## Experiment: reranking
+
+I added a cross-encoder reranker (ms-marco-MiniLM-L-6-v2) that re-sorts the top 15 vector results and keeps 6.
+
+|                                | Baseline | Reranked |
+| ------------------------------ | -------- | -------- |
+| Answerable questions answered  | 6/7      | 7/8      |
+| Unanswerable correctly refused | 2/2      | 2/2      |
+| Expected page in top 6         | 3/3      | 3/3      |
+
+(The baseline had one Gemini API failure, excluded from its score.)
+
+**Finding:** reranking did not measurably improve results on this small set.
+It improved the first-ranked chunk for two questions (ls, symbolic links)
+and slightly lowered it for two others (permissions), while adding a model
+download and extra latency.
+
+**Main failure:** "How do I search for text inside files?" never retrieves the
+grep section, because the question has no word that matches "grep"
+(a vocabulary mismatch). Reranking cannot fix it, since the right chunk is not
+among the 15 candidates. Query rewriting is the next thing to try.
 
 ## What I learned
 

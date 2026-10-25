@@ -8,5 +8,10 @@
   {"q": "What is the difference between cp and mv?", "page": null, "answerable": true},
   {"q": "How do I search for text inside files?", "page": null, "answerable": true},
   {"q": "Who won the cricket world cup?", "page": null, "answerable": false},
-  {"q": "How do I install Docker?", "page": null, "answerable": false}
+  {"q": "How do I install Docker?", "page": null, "answerable": false},
+  {"q": "What does the grep command do?", "page": null, "answerable": true},
+  {"q": "How do I find files by name?", "page": null, "answerable": true},
+  {"q": "How do I redirect output to a file?", "page": null, "answerable": true},
+  {"q": "What is a pipeline in the shell?", "page": null, "answerable": true},
+  {"q": "How do I write and run a simple shell script?", "page": null, "answerable": true}
 ]
