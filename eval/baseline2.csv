@@ -1,0 +1,16 @@
+question,answerable,refused,retrieved_pages,top_page,expected_page_found,answer,error
+How do I change file permissions?,True,False,"[134, 121, 128, 118, 132, 124]",134,True,"To change the permissions (mode) of a file or directory, use the **`chmod`** command (p. 121).  When using symbolic notation with `chmod`, you specify (p. 124): * **Who will be affected:**    * `u` (user/owner)   * `g` (group owner)   * `o` (others)   * `a` (all: user, group, and others; this is ass",False
+What does chmod 755 mean?,True,False,"[124, 123, 121, 128, 122, 134]",124,True,"Based on the context:  * **`chmod`** is used to change the mode (permissions) of a file or directory (p. 121). * **755** refers to a permission mode representing **`rwxr-xr-x`** (p. 134).  * In this notation, **7** corresponds to **`rwx`** (read, write, execute) and **5** corresponds to **`r-x`** (r",False
+What does the ls command do?,True,False,"[372, 39, 37, 101, 80, 119]",372,,"Based on the context, the `ls` command is used to: * List directory contents (p. 37, 372). * See directory contents and determine a variety of important file and directory attributes (p. 37). * Get a list of files and subdirectories contained in the current working directory or in specified director",False
+How do I copy a directory?,True,False,"[54, 287, 132, 55, 56, 60]",54,,"To copy a directory, use the `cp` command with the recursive option (`-r` or `--recursive`), or the archive option (`-a` or `--archive`), which is required when copying directories (p. 54).  For example: ```bash cp -r dir1 dir2 ``` * If `dir2` does not exist, it will be created and will contain the ",False
+What is a symbolic link?,True,False,"[67, 58, 59, 59, 48, 64]",67,,"Based on the context, a symbolic link is a special type of file that contains a text pointer (or a text description of where the target file is) to a referenced file or directory (p. 59, p. 64).   Key details include: * They were created to overcome the limitations of hard links and operate similarl",False
+How do I change the owner of a file?,True,False,"[132, 121, 132, 133, 118, 134]",132,True,The model is busy right now. Please try again.,True
+What is the difference between cp and mv?,True,False,"[56, 55, 101, 54, 102, 50]",56,,The model is busy right now. Please try again.,True
+How do I search for text inside files?,True,False,"[185, 311, 113, 256, 186, 310]",185,,The model is busy right now. Please try again.,True
+Who won the cricket world cup?,False,False,"[353, 62, 241, 359, 297, 223]",353,,The model is busy right now. Please try again.,True
+How do I install Docker?,False,False,"[396, 375, 207, 209, 21, 257]",396,,The model is busy right now. Please try again.,True
+What does the grep command do?,True,False,"[291, 264, 293, 372, 91, 313]",291,,The model is busy right now. Please try again.,True
+How do I find files by name?,True,False,"[256, 256, 261, 269, 292, 265]",256,,The model is busy right now. Please try again.,True
+How do I redirect output to a file?,True,False,"[81, 83, 189, 84, 85, 80]",81,,The model is busy right now. Please try again.,True
+What is a pipeline in the shell?,True,False,"[93, 87, 89, 30, 88, 80]",93,,The model is busy right now. Please try again.,True
+How do I write and run a simple shell script?,True,False,"[20, 25, 22, 30, 26, 21]",20,,The model is busy right now. Please try again.,True
